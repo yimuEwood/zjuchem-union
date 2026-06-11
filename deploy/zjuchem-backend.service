@@ -1,0 +1,17 @@
+[Unit]
+Description=ZJU Chemistry Union Backend (FastAPI)
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/zjuchem/backend
+Environment="DATA_DIR=/var/data/zjuchem"
+Environment="SECRET_KEY=zjuchem-union-prod-secret-2024-change-me"
+ExecStart=/var/www/zjuchem/backend/venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
